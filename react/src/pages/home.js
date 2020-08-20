@@ -1,11 +1,12 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 
 function Home () {
   return (
-    <div>
+    <>
       <h1>Issues</h1>
       <ol>
-        <li>跨域请求</li>
+        <li><Link to="/cross-domain">跨域请求</Link></li>
         <li>请求方法及数据</li>
         <li>响应结果及数据</li>
         <li>Cookie / Token 验证</li>
@@ -14,7 +15,7 @@ function Home () {
         <li>文件预览及下载</li>
         <li>安全问题</li>
       </ol>
-    </div>
+    </>
   )
 }
 
