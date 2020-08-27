@@ -77,6 +77,14 @@ function CrossDomain (abc) {
       .then(res => console.log(res.data))
   }
 
+  window.JSONPCallback = data => console.log(data)
+  function sendJSONPRequest () {
+    const url = `${API_ORIGIN}/cross-domain/jsonp?callback=JSONPCallback`
+    const script = document.createElement('script')
+    script.setAttribute('src', url)
+    document.getElementsByTagName('head')[0].appendChild(script)
+  }
+
   return (
     <div>
       <h1>跨域请求</h1>
@@ -193,23 +201,8 @@ function CrossDomain (abc) {
       <hr />
 
       <div>
-        <h3>Nginx 反向代理常用配置</h3>
-        <pre><code dangerouslySetInnerHTML={{__html: `  # in server block
-  location /api {
-    proxy_pass http://api.anchnet.com
-    proxy_set_header Host $host; # 设置 Host 头，非必须
-    proxy_ssl_server_name on; # https 访问时传递 Server Name，非必须
-    proxy_redirect off; # 阻止代理跳转，非必须
-  }
-        `}} /></pre>
-        <pre><code dangerouslySetInnerHTML={{__html: `  # WebSocket
-  location /socket {
-    proxy_pass http://socket.anchnet.com;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "Upgrade";
-  }
-        `}} /></pre>
+        <h3>JSONP 请求</h3>
+        <button onClick={sendJSONPRequest}>JSONP</button>
       </div>
 
     </div>

@@ -123,4 +123,9 @@ router.get('/clear-cookie', (req, res, next) => {
     .json({company})
 })
 
+router.get('/jsonp', (req, res, next) => {
+  const {callback} = req.query
+  res.send(`${callback}('Anchnet')`)
+})
+
 module.exports = router

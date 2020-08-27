@@ -19,8 +19,10 @@
 
 出于安全原因，浏览器限制从脚本内发起的跨源HTTP请求。例如，XMLHttpRequest和Fetch API遵循同源策略。这意味着使用这些API的Web应用程序只能从加载应用程序的同一个域请求HTTP资源，除非响应报文包含了正确CORS响应头。
 
-#### Demo
-1. [local demo](http://localhost:3721/cross-domain)
+#### Response Header
+```
+Access-Control-Allow-Origin: frontend.anchnet.com
+```
 
 #### Reference
 1. [HTTP访问控制（CORS）](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)by MDN
@@ -39,8 +41,39 @@
 3. Next 或 Nuxt 等 SSR 框架搭建的前端 / 全栈项目因为包含 node 服务器所以可以在 node 层处理接口代理。
 4. 使用反向代理方式解决跨域问题，后端接口不需要做任何调整。
 
-#### Demo
-1. [local demo](http://localhost:3721/cross-domain)
+#### Webpack Config
+``` javascript
+module.exports = {
+  devServer: {
+    proxy: {
+      '/api': 'http://api.anchnet.com'
+    }
+  }
+}
+```
+
+#### Nginx Config
+```
+location /api {
+    proxy_pass http://api.anchnet.com
+
+    # 设置 Host 头，非必须
+    proxy_set_header Host $host;
+
+    # https 访问时传递 Server Name，非必须
+    proxy_ssl_server_name on;
+
+    # 阻止代理跳转，非必须
+    proxy_redirect off;
+}
+
+location /socket {
+    proxy_pass http://socket.anchnet.com;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "Upgrade";
+}
+```
 
 #### Reference
 1. [反向代理](https://baike.baidu.com/item/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86) by 百度百科
@@ -48,3 +81,15 @@
 ---
 
 ### JSONP
+JSONP 是一种非正式传输协议，该协议的一个要点就是允许用户传递一个 callback 参数给服务端，然后服务端返回数据时会将这个 callback 参数作为函数名来包裹住 JSON 数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。
+
+#### Points
+1. 手动发起 JSONP 请求前需要定义好回调函数，若使用工具（如 jQuery）发起 JSONP 请求则工具会代为操作。
+2. 浏览器发出的 JSONP 请求不会出现在 Chrome 调试工具 Network 菜单的 XHR 类型里，而是出现在 JS 类型下。这是因为 JSONP 虽然像 AJAX 一样做到前后端数据交换、并且被我们当成类似 XHR 的存在，但它的本质仍然是 JS 文件。
+3. JSONP 跟 AJAX 相比有一个明显的缺陷，就是只能发起 GET 类型的请求。
+
+#### Reference
+1. [JSONP跨域详解](https://www.jianshu.com/p/e1e2920dac95) by 公子七
+
+## Demo
+- [local demo](http://localhost:3721/cross-domain)
