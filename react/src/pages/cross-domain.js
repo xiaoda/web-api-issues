@@ -11,62 +11,70 @@ function CrossDomain (abc) {
   const axiosHttpsInstance = axios.create({
     baseURL: `${API_HTTPS_ORIGIN}/cross-domain`
   })
+  const axiosProxyInstance = axios.create({
+    baseURL: '/cross-domain'
+  })
 
   function sendRawRequest () {
     axiosInstance
       .get('/raw')
-      .then(response => console.log(response.data))
+      .then(res => console.log(res.data))
   }
   function sendAllowAllRequest () {
     axiosInstance
       .get('/allow-all')
-      .then(response => console.log(response.data))
+      .then(res => console.log(res.data))
   }
   function sendSpecificOriginRequest () {
     axiosInstance
       .get('/specific-origin')
-      .then(response => console.log(response.data))
+      .then(res => console.log(res.data))
   }
   function sendPutRequest () {
     axiosInstance
       .put('/put')
-      .then(response => console.log(response.data))
+      .then(res => console.log(res.data))
   }
   function sendDeleteRequest () {
     axiosInstance
       .delete('/delete')
-      .then(response => console.log(response.data))
+      .then(res => console.log(res.data))
   }
   function sendPutWithPreflight () {
     axiosInstance
       .put('/put-with-preflight')
-      .then(response => console.log(response.data))
+      .then(res => console.log(res.data))
   }
   function sendDeleteWithPreflight () {
     axiosInstance
       .delete('/delete-with-preflight')
-      .then(response => console.log(response.data))
+      .then(res => console.log(res.data))
   }
   function sendGetCookieRequest () {
     axiosHttpsInstance
       .get('/get-cookie', {
         withCredentials: true
       })
-      .then(response => console.log(response.data))
+      .then(res => console.log(res.data))
   }
   function sendSetCookieRequest () {
     axiosHttpsInstance
       .get('/set-cookie', {
         withCredentials: true
       })
-      .then(response => console.log(response.data))
+      .then(res => console.log(res.data))
   }
   function sendClearCookieRequest () {
     axiosHttpsInstance
       .get('/clear-cookie', {
         withCredentials: true
       })
-      .then(response => console.log(response.data))
+      .then(res => console.log(res.data))
+  }
+  function sendWebpackProxyRequest () {
+    axiosProxyInstance
+      .get('/raw')
+      .then(res => console.log(res.data))
   }
 
   return (
@@ -170,6 +178,38 @@ function CrossDomain (abc) {
             </a>
           </li>
         </ol>
+      </div>
+      <hr />
+
+      <div>
+        <h3>开发环境接口代理</h3>
+        <button onClick={sendWebpackProxyRequest}>webpack proxy</button>
+        <h4>讨论</h4>
+        <ol>
+          <li>本项目由 create-react-app 生成，根据文档在 package.json 添加 proxy 即可实现开发环境接口代理。其最终实现是依靠 Webpack devServer 的 proxy 配置项。</li>
+          <li>其它框架的开发环境代理配置方法可查看各框架文档。</li>
+        </ol>
+      </div>
+      <hr />
+
+      <div>
+        <h3>Nginx 反向代理常用配置</h3>
+        <pre><code dangerouslySetInnerHTML={{__html: `  # in server block
+  location /api {
+    proxy_pass http://api.anchnet.com
+    proxy_set_header Host $host; # 设置 Host 头，非必须
+    proxy_ssl_server_name on; # https 访问时传递 Server Name，非必须
+    proxy_redirect off; # 阻止代理跳转，非必须
+  }
+        `}} /></pre>
+        <pre><code dangerouslySetInnerHTML={{__html: `  # WebSocket
+  location /socket {
+    proxy_pass http://socket.anchnet.com;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "Upgrade";
+  }
+        `}} /></pre>
       </div>
 
     </div>
