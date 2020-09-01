@@ -20,8 +20,10 @@ HTTP GET 方法请求指定的资源。使用 GET 的请求应该只用于获取
 | 可缓存 | 是 |
 | HTML 表单是否支持 | 是 |
 
-#### Point
-1. GET 请求理论上可以包含请求体（request body），后端接口可以接收到数据，也可以通过 Postman 等工具成功发出。但 Web 标准不建议这么做，因此如 Axios 等 HTTP 请求库并没有支持这个功能。[【参考】](https://my.oschina.net/airship/blog/3081424)
+#### Points
+1. GET 请求携带的参数会拼接在 URL 上，特殊字符需要转义。
+2. GET 请求理论上可以包含请求体（request body），我们可以通过 Postman 等工具成功发出带有请求体的 GET 请求，后端接口也可以接收到数据。但 Web 标准不建议这么做，一些服务器软件在处理和转发请求时可能会丢弃 GET 请求的请求体，Axios 等 HTTP 请求库也不支持这个功能。[【参考】](https://my.oschina.net/airship/blog/3081424)
+3. GET 请求因为一些客观因素（浏览器打开链接默认是 GET 请求；GET 请求通过 URL 携带参数）成为最容易受到攻击的请求方式。
 
 #### Reference
 1. [GET](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods/GET) by MDN
@@ -41,6 +43,9 @@ PUT 和POST方法的区别是,PUT方法是幂等的：连续调用一次或者�
 | 幂等 | 否 |
 | 可缓存 | 仅当包含有效时间信息时 |
 | HTML 表单是否支持 | 是 |
+
+#### Points
+1. POST 请求携带的数据有 4 种常见的 content-type，分别是：application/json、application/x-www-form-urlencoded、multipart/form-data 和 text/xml。[【参考】](https://imququ.com/post/four-ways-to-post-data-in-http.html)
 
 #### Reference
 1. [POST](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods/POST) by MDN
@@ -106,8 +111,12 @@ REST 本身并没有创造新的技术、组件或服务，而隐藏在 RESTful 
 
 此外，CORS 定义了一个叫做 simple headers 的集合，它是请求头集合的一个子集。如果某次请求是只包含 simple header 的话，则被认为是简单请求，不会触发请求预检（preflight）。
 
+#### Points
+1. 从浏览器发出的请求会由浏览器添加默认请求头，例如：Host, Origin, Referer, Cookie, Cache-Control, Accept-Language, User-Agent 等。由服务端或脚本发起的请求往往没有默认的请求头，但想要伪造也不难。
+
 #### Reference
 1. [Request header（请求头）](https://developer.mozilla.org/zh-CN/docs/Glossary/%E8%AF%B7%E6%B1%82%E5%A4%B4) by MDN
 2. [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) by MDN
 
 ## Request body
+Waiting to be added..
