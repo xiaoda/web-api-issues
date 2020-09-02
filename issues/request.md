@@ -117,6 +117,3 @@ REST 本身并没有创造新的技术、组件或服务，而隐藏在 RESTful 
 #### Reference
 1. [Request header（请求头）](https://developer.mozilla.org/zh-CN/docs/Glossary/%E8%AF%B7%E6%B1%82%E5%A4%B4) by MDN
 2. [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) by MDN
-
-## Request body
-Waiting to be added..
