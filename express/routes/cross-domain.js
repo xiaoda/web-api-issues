@@ -2,49 +2,31 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/raw', (req, res, next) => {
-  res.json({
-    message: 'raw'
-  })
+  res.json({message: 'raw'})
 })
 
 router.get('/allow-all', (req, res, next) => {
   res
-    .set({
-      'Access-Control-Allow-Origin': '*'
-    })
-    .json({
-      message: 'allow all'
-    })
+    .set({'Access-Control-Allow-Origin': '*'})
+    .json({message: 'allow all'})
 })
 
 router.get('/specific-origin', (req, res, next) => {
   res
-    .set({
-      'Access-Control-Allow-Origin': req.headers.origin
-    })
-    .json({
-      message: 'specific origin'
-    })
+    .set({'Access-Control-Allow-Origin': req.headers.origin})
+    .json({message: 'specific origin'})
 })
 
 router.put('/put', (req, res, next) => {
   res
-    .set({
-      'Access-Control-Allow-Origin': req.headers.origin
-    })
-    .json({
-      message: 'put'
-    })
+    .set({'Access-Control-Allow-Origin': req.headers.origin})
+    .json({message: 'put'})
 })
 
 router.delete('/delete', (req, res, next) => {
   res
-    .set({
-      'Access-Control-Allow-Origin': req.headers.origin
-    })
-    .json({
-      message: 'delete'
-    })
+    .set({'Access-Control-Allow-Origin': req.headers.origin})
+    .json({message: 'delete'})
 })
 
 router.options('/put-with-preflight', (req, res, next) => {
@@ -58,12 +40,8 @@ router.options('/put-with-preflight', (req, res, next) => {
 
 router.put('/put-with-preflight', (req, res, next) => {
   res
-    .set({
-      'Access-Control-Allow-Origin': req.headers.origin
-    })
-    .json({
-      message: 'put with preflight'
-    })
+    .set({'Access-Control-Allow-Origin': req.headers.origin})
+    .json({message: 'put with preflight'})
 })
 
 router.options('/delete-with-preflight', (req, res, next) => {
@@ -77,12 +55,8 @@ router.options('/delete-with-preflight', (req, res, next) => {
 
 router.delete('/delete-with-preflight', (req, res, next) => {
   res
-    .set({
-      'Access-Control-Allow-Origin': req.headers.origin
-    })
-    .json({
-      message: 'delete with preflight'
-    })
+    .set({'Access-Control-Allow-Origin': req.headers.origin})
+    .json({message: 'delete with preflight'})
 })
 
 router.get('/get-cookie', (req, res, next) => {

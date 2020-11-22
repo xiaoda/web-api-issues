@@ -5,10 +5,26 @@
 1. [请求方法及数据](issues/request.md)
 2. [响应结果及数据](issues/response.md)
 3. [跨域请求](issues/cross-domain.md)
+4. [文件预览及下载](issues/preview-and-download.md)
 
 ## Todo
-- 请求超时设置
-- 文件预览及下载
 - Cookie / Token 验证
 - 服务端推送
 - 安全问题
+
+## Demo
+本项目提供本地 Demo，包含 React 构建的前端网页及 Express 构建的后端接口。
+
+#### 前端网页运行方法
+```
+cd react
+npm install
+npm start // 运行在 http://localhost:3721
+```
+
+#### 后端接口运行方法
+```
+cd express
+npm install
+npm run dev // 运行在 http://127.0.0.1:3824
+```

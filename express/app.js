@@ -6,6 +6,7 @@ const logger = require('morgan')
 
 const indexRouter = require('./routes/index')
 const crossDomainRouter = require('./routes/cross-domain')
+const downloadRouter = require('./routes/download')
 
 const app = express()
 
@@ -20,6 +21,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/cross-domain', crossDomainRouter)
+app.use('/download', downloadRouter)
 app.use('/', indexRouter)
 
 // catch 404 and forward to error handler
