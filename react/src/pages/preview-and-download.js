@@ -27,9 +27,6 @@ function PreviewAndDownload () {
           <li>
             <a href="/avatar.png" download>图片下载（&lt;a&gt;标签 download 属性）</a>
           </li>
-          <li>
-            <button>图片下载（动态创建&lt;a&gt;标签下载）</button>
-          </li>
         </ol>
       </div>
     </div>
