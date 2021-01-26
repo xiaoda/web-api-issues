@@ -14,7 +14,7 @@
 2. 手动接收、存储和发送
 3. 免疫 CSRF 攻击
 
-## Summary
+## Comparison
 1. Token 相对原始，Cookie 相对高级，Cookie 像经过封装的 Token 功能。
 2. Token 是更适合多终端的验证方案。
 

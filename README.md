@@ -7,9 +7,9 @@
 3. [跨域请求](issues/cross-domain.md)
 4. [文件预览及下载](issues/preview-and-download.md)
 5. [Cookie / Token 验证](issues/cookie-and-token.md)
+6. [服务端推送](issues/server-push.md)
 
 ## Todo
-- 服务端推送
 - 安全问题
 
 ## Demo
