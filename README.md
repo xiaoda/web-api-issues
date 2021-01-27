@@ -8,9 +8,7 @@
 4. [文件预览及下载](issues/preview-and-download.md)
 5. [Cookie / Token 验证](issues/cookie-and-token.md)
 6. [服务端推送](issues/server-push.md)
-
-## Todo
-- 安全问题
+7. [Web 安全](issues/safety.md)
 
 ## Demo
 本项目提供本地 Demo，包含 React 构建的前端网页及 Express 构建的后端接口。
