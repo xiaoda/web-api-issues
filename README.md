@@ -6,9 +6,9 @@
 2. [响应结果及数据](issues/response.md)
 3. [跨域请求](issues/cross-domain.md)
 4. [文件预览及下载](issues/preview-and-download.md)
-5. [服务端推送](issues/server-push.md)
+5. [服务端推送](issues/server-side-push.md)
 6. [Cookie / Token 验证](issues/cookie-and-token.md)
-7. [Web 安全](issues/safety.md)
+7. [Web 安全](issues/security.md)
 
 ## Demo
 本项目提供本地 Demo，包含 React 构建的前端网页及 Express 构建的后端接口。
